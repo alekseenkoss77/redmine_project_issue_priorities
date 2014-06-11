@@ -1,0 +1,35 @@
+<h3><%= l(:issue_priorities) %></h3>
+<div style="float: left; width: 400px;">
+  <%= form_tag(project_priority_path(@project.id), :method => :put, :class => "tabular") do %>
+    <% @priorities = IssuePriority.all %>
+    <% if @priorities.any? %>
+      <table style="width: 400px;" class="list">
+        <thead><tr>
+          <th width="300"><%= l(:label_issue_priority) %></th>
+          <th width="100"><%= l(:issue_priority_active) %></th>
+        </tr></thead>
+        <tbody>
+          <% @priorities.each do |priority| %>
+            <tr class="<%= cycle('odd', 'even') %>">
+              <td align="center">
+                <%= priority.name %>
+              </td>
+              <td align="center">
+                <%= check_box_tag 'issue_priorities[]', priority.id, (@project.issue_priorities.include?(priority) ? true : false) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+    
+  <div class="contextual">
+  <%= link_to(l(:button_reset), project_priority_path(@project.id),
+            :method => :delete,
+            :data => {:confirm => l(:text_are_you_sure)},
+            :class => 'icon icon-del') %>
+  </div>
+  
+  <%= submit_tag l(:button_save) %>
+  <% end %>
+</div>
