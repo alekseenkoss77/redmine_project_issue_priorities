@@ -1,0 +1,1 @@
+var search_data = {"index":{"searchIndex":["readme"],"longSearchIndex":[""],"info":[["README","","README_rdoc.html","","<p>Project priorities plugin\n<p>Плагин добавляет в Redmine возможность использовать приоритеты задач, в\nобласти …\n"]]}}
